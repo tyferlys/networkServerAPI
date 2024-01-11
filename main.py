@@ -12,7 +12,7 @@ async def readRoot():
     return {"message": "Hello World"}
 
 
-@app.get("/networkNumbers")
+@app.post("/networkNumbers")
 async def read_numbers(imageData: ImageBase64):
     image = base64ToImage(imageData.image)
     numbers = predictNumbers(image)
