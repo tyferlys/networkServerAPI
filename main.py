@@ -21,14 +21,14 @@ app.add_middleware(
 )
 
 @app.get("/")
-async def readRoot():
+def readRoot():
     return {"message": "Hello World"}
 
 
 @app.post("/networkNumbers")
-async def read_numbers(imageData: ImageBase64):
+def read_numbers(imageData: ImageBase64):
     fileName = base64ToImage(imageData.image)
-    numbersData = await predictNumbers(fileName)
+    numbersData = predictNumbers(fileName)
 
     image = PIL.Image.open(numbersData["image"])
 
