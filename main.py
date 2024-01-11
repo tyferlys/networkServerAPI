@@ -42,5 +42,9 @@ def read_numbers(imageData: ImageBase64):
     }}
 
 
+@app.post("/networkTest")
+def read_test(imageData: ImageBase64):
+    return {"message": "working"}
+
 
 
