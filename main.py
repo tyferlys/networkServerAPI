@@ -1,3 +1,4 @@
+import asyncio
 import base64
 from io import BytesIO
 
@@ -27,7 +28,7 @@ async def readRoot():
 @app.post("/networkNumbers")
 async def read_numbers(imageData: ImageBase64):
     fileName = base64ToImage(imageData.image)
-    numbersData = predictNumbers(fileName)
+    numbersData = await predictNumbers(fileName)
 
     image = PIL.Image.open(numbersData["image"])
 

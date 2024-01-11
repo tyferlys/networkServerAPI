@@ -3,7 +3,8 @@ import os
 import torch
 from ultralytics import YOLO
 
-def predictNumbers(fileName):
+
+async def predictNumbers(fileName):
     model = YOLO('./networks/models/numbers/weights/best.pt')
     results = model(fileName, imgsz=300, save=True, device="cpu")
 
