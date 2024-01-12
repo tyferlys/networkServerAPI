@@ -46,5 +46,7 @@ def read_numbers(imageData: ImageBase64):
 def read_test(imageData: ImageBase64):
     return {"message": "working"}
 
+#TODO ПРОТЕСТИТЬ ВТОРУЮ ВЕТКУ
+
 
 
