@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import torch
 from ultralytics import YOLO
@@ -20,7 +21,7 @@ classesCifar = {
 }
 
 def predictCifar(fileName):
-    model = YOLO('./networks/models/cifar/weights/best.pt')
+    model = YOLO(Path('./networks/models/cifar/weights/best.pt').resolve())
     results = model(fileName, imgsz=32, save=True, device="cpu")
 
     for result in results:

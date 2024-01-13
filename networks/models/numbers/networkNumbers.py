@@ -1,11 +1,12 @@
 import os
+from pathlib import Path
 
 import torch
 from ultralytics import YOLO
 
 
 def predictNumbers(fileName):
-    model = YOLO('./networks/models/numbers/weights/best.pt')
+    model = YOLO(Path('./networks/models/numbers/weights/best.pt').resolve())
     results = model(fileName, imgsz=300, save=True, device="cpu")
 
     subfolders = [f for f in os.listdir("./runs/detect") if os.path.isdir(os.path.join("./runs/detect", f))]
