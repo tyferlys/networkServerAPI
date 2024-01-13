@@ -12,7 +12,6 @@ def predictNumbers(fileName):
     latest_subfolder = max(subfolders, key=lambda x: os.path.getmtime(os.path.join("./runs/detect", x)))
 
     for result in results:
-        print(result.boxes.cls)
         return {
             "array": result.boxes.cls.to(torch.int).tolist(),
             "image": f"./runs/detect/{latest_subfolder}/{fileName.split('/')[2]}"
