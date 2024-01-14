@@ -1,4 +1,6 @@
 import os
+import pathlib
+import platform
 from pathlib import Path
 
 import torch
@@ -19,6 +21,9 @@ classesCifar = {
     90: 'поезд', 91: 'форель', 92: 'тюльпан', 93: 'черепаха', 94: 'гардероб', 95: 'кит', 96: 'ива', 97: 'волк', 98: 'женщина',
     99: 'червь'
 }
+
+plt = platform.system()
+if plt == 'Linux': pathlib.WindowsPath = pathlib.PosixPath
 
 def predictCifar(fileName):
     model = YOLO(Path('./networks/models/cifar/weights/best.pt').resolve())
