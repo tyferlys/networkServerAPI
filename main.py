@@ -9,6 +9,7 @@ from functions.base64ToImage import base64ToImage
 from models.ImageBase64 import ImageBase64
 from networks.models.cifar.networkCifar import predictCifar
 from networks.models.numbers.networkNumbers import predictNumbers
+from networks.models.visDrone.networkVisDrone import predictVisDrone
 
 app = FastAPI()
 
@@ -58,6 +59,22 @@ def read_test(imageData: ImageBase64):
         "image": base64_image
     }}
 
+
+@app.post("/networkVisDrone")
+def read_test(imageData: ImageBase64):
+    fileName = base64ToImage(imageData.image)
+    numbersData = predictVisDrone(fileName)
+
+    image = PIL.Image.open(numbersData["image"])
+
+    img_byte_array = BytesIO()
+    image.save(img_byte_array, format=image.format)
+    base64_image = base64.b64encode(img_byte_array.getvalue()).decode('utf-8')
+
+    return {"result": {
+        "answer": numbersData["array"],
+        "image": base64_image
+    }}
 
 
 

@@ -30,8 +30,6 @@ def predictCifar(fileName):
     results = model(fileName, imgsz=32, save=True, device="cpu")
 
     for result in results:
-        print(result.names)
-        print(result.probs.top1)
         classesTrue = [value for key, value in classesCifar.items() if key in result.probs.top5]
 
     subfolders = [f for f in os.listdir("./runs/classify") if os.path.isdir(os.path.join("./runs/classify", f))]
