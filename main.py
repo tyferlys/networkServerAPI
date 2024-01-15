@@ -4,6 +4,7 @@ from io import BytesIO
 import PIL
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
+from starlette.responses import PlainTextResponse
 
 from functions.base64ToImage import base64ToImage
 from models.ImageBase64 import ImageBase64
@@ -77,7 +78,7 @@ def read_test(imageData: ImageBase64):
     }}
 
 
-@app.get("/.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt")
+@app.get("/.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt", response_class=PlainTextResponse)
 def letsencrypt_verification():
     verification_file_path = f"./.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt"
 
