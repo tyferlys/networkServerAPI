@@ -77,4 +77,12 @@ def read_test(imageData: ImageBase64):
     }}
 
 
+@app.get("/.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt")
+def letsencrypt_verification():
+    verification_file_path = f"./.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt"
+
+    with open(verification_file_path, "r") as file:
+        content = file.read()
+        return content
+
 
