@@ -30,7 +30,7 @@ def predictCifar(fileName):
     results = model(fileName, imgsz=32, save=True, device="cpu")
 
     for result in results:
-        classesTrue = [value for key, value in classesCifar.items() if key in result.probs.top5]
+        classesTrue = [classesCifar[key] for key in result.probs.top5 if key in classesCifar]
 
     subfolders = [f for f in os.listdir("./runs/classify") if os.path.isdir(os.path.join("./runs/classify", f))]
     latest_subfolder = max(subfolders, key=lambda x: os.path.getmtime(os.path.join("./runs/classify", x)))
