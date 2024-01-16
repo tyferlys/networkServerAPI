@@ -26,7 +26,7 @@ plt = platform.system()
 if plt == 'Linux': pathlib.WindowsPath = pathlib.PosixPath
 
 def predictCifar(fileName):
-    model = YOLO(Path('./networks/models/cifar/weights/best.pt').resolve())
+    model = YOLO(Path('./src/networks/models/cifar/weights/best.pt').resolve())
     results = model(fileName, imgsz=32, save=True, device="cpu")
 
     for result in results:
@@ -38,5 +38,5 @@ def predictCifar(fileName):
     for result in results:
         return {
             "array": classesTrue,
-            "image": f"./runs/classify/{latest_subfolder}/{fileName.split('/')[2]}"
+            "image": f"./runs/classify/{latest_subfolder}/{fileName.split('/')[3]}"
         }

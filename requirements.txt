@@ -5,3 +5,9 @@ torch~=2.1.2
 ultralytics==8.0.230
 pillow~=10.2.0
 uvicorn~=0.25.0
+sqlalchemy
+alembic
+psycopg2-binary
+greenlet
+Mako
+

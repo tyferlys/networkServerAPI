@@ -10,7 +10,7 @@ def base64ToImage(imageString):
 
     now = datetime.now()
     timestamp = int(now.timestamp() * 1000)
-    fileName = f"./images/image{timestamp}.png"
+    fileName = f"./src/images/image{timestamp}.png"
 
     image.save(fileName)
 

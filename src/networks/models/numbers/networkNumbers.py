@@ -6,7 +6,7 @@ from ultralytics import YOLO
 
 
 def predictNumbers(fileName):
-    model = YOLO(Path('./networks/models/numbers/weights/best.pt').resolve())
+    model = YOLO(Path('./src/networks/models/numbers/weights/best.pt').resolve())
     results = model(fileName, imgsz=300, save=True, device="cpu")
 
     subfolders = [f for f in os.listdir("./runs/detect") if os.path.isdir(os.path.join("./runs/detect", f))]
@@ -15,5 +15,5 @@ def predictNumbers(fileName):
     for result in results:
         return {
             "array": result.boxes.cls.to(torch.int).tolist(),
-            "image": f"./runs/detect/{latest_subfolder}/{fileName.split('/')[2]}"
+            "image": f"./runs/detect/{latest_subfolder}/{fileName.split('/')[3]}"
         }
