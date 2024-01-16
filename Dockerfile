@@ -15,4 +15,4 @@ COPY . .
 
 WORKDIR /src
 
-CMD uvicorn main:app --workers 4 --host 0.0.0.0 --port 443 --ssl-keyfile private.key --ssl-certfile certificate.crt
+CMD uvicorn main:app --workers 4 --host 0.0.0.0 --port 443 --ssl-keyfile ../private.key --ssl-certfile ../certificate.crt
