@@ -29,5 +29,7 @@ def predict_visDrone(imageData: ImageBase64Request) -> NetworkAnswerResponse:
     image.save(img_byte_array, format=image.format)
     base64_image = base64.b64encode(img_byte_array.getvalue()).decode('utf-8')
 
-    return NetworkAnswerResponse(answer=numbersData["array"], image=base64_image)
+    answer = [str(item) for item in numbersData["array"]]
+
+    return NetworkAnswerResponse(answer=answer, image=base64_image)
 
