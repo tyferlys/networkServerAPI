@@ -5,9 +5,10 @@ torch~=2.1.2
 ultralytics==8.0.230
 pillow~=10.2.0
 uvicorn~=0.25.0
-sqlalchemy
-alembic
+sqlalchemy~=2.0.25
+alembic~=1.13.1
 psycopg2-binary
 greenlet
 Mako
-
+starlette~=0.32.0.post1
+python-dotenv~=1.0.0
