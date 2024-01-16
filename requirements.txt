@@ -5,7 +5,7 @@ torch~=2.1.2
 ultralytics==8.0.230
 pillow~=10.2.0
 uvicorn~=0.25.0
-sqlalchemy~=2.0.25
+sqlalchemy~=2.0.0
 alembic~=1.13.1
 psycopg2-binary
 greenlet
