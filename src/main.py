@@ -127,9 +127,9 @@ def predict_visDrone(imageData: ImageBase64):
 
 # ДЛЯ SSL КЛЮЧА
 
-@app.get("src/.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt", response_class=PlainTextResponse)
+@app.get(".well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt", response_class=PlainTextResponse)
 def letsencrypt_verification():
-    verification_file_path = f"src/.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt"
+    verification_file_path = f".well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt"
 
     with open(verification_file_path, "r") as file:
         content = file.read()
