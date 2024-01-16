@@ -8,7 +8,6 @@ from src.functions.base64ToImage import base64ToImage
 from src.networks.models.numbers.networkNumbers import predictNumbers
 from src.types.ImageBase64Request import ImageBase64Request
 from src.types.NetworkAnswerResponse import NetworkAnswerResponse
-from src.types.NetworkDataResponse import NetworkDataResponse
 
 routerNetworkNumbers = APIRouter()
 

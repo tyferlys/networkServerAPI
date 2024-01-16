@@ -8,7 +8,6 @@ from src.functions.base64ToImage import base64ToImage
 from src.networks.models.cifar.networkCifar import predictCifar
 from src.types.ImageBase64Request import ImageBase64Request
 from src.types.NetworkAnswerResponse import NetworkAnswerResponse
-from src.types.NetworkDataResponse import NetworkDataResponse
 
 routerNetworkCifar = APIRouter()
 

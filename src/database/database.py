@@ -8,11 +8,11 @@ DATABASE_URL = f"postgresql+psycopg2://{config.DB_USER}:{config.DB_PASS}@{config
 engine = create_engine(DATABASE_URL, echo=True, future=True)
 Base = declarative_base()
 
-Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 def get_db():
-    db = Session()
+    db = SessionLocal()
 
     try:
         yield db

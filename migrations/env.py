@@ -7,7 +7,9 @@ from alembic import context
 
 from config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS
 from src.database.database import Base
-from src.database.models.User import User
+from src.database.models.Network import Network
+from src.database.models.Network import Tag
+from src.database.models.TagToNetwork import TagToNetwork
 
 
 config = context.config
