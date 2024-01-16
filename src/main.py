@@ -28,7 +28,7 @@ def readRoot():
     return {"message": "Hello World"}
 
 
-@app.get(".well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt", response_class=PlainTextResponse)
+@app.get("/.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt", response_class=PlainTextResponse)
 def letsencrypt_verification():
     verification_file_path = f"./src/.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt"
 
