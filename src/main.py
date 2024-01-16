@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import PlainTextResponse
 
+from src.endpoints.auth.auth import routerAuth
 from src.endpoints.networks.networkCifar.RouterNetworkCifar import routerNetworkCifar
 from src.endpoints.networks.networkNumbers.RouterNetworkNumbers import routerNetworkNumbers
 from src.endpoints.networks.networkVisDrone.RouterNetworkVisDrone import routerNetworkVisDrone
@@ -16,10 +17,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(routerNetworkNumbers, prefix="/networkNumbers")
-app.include_router(routerNetworkCifar, prefix="/networkCifar")
-app.include_router(routerNetworkVisDrone, prefix="/networkVisDrone")
+app.include_router(routerAuth, tags=["auth"])
 
+app.include_router(routerNetworkNumbers, prefix="/networkNumbers", tags=["networkNumbers"])
+app.include_router(routerNetworkCifar, prefix="/networkCifar", tags=["networkCifar"])
+app.include_router(routerNetworkVisDrone, prefix="/networkVisDrone", tags=["networkVisDrone"])
 
 @app.get("/")
 def readRoot():

@@ -6,6 +6,9 @@ from sqlalchemy import pool
 from alembic import context
 
 from config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS
+from src.database.database import Base
+from src.database.models.User import User
+
 
 config = context.config
 section = config.config_ini_section
@@ -18,7 +21,8 @@ config.set_section_option(section, "DB_PASS", DB_PASS)
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-target_metadata = None
+target_metadata = Base.metadata
+
 
 def run_migrations_offline() -> None:
     url = config.get_main_option("sqlalchemy.url")

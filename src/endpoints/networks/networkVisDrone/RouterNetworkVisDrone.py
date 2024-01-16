@@ -14,7 +14,7 @@ routerNetworkVisDrone = APIRouter()
 
 
 @routerNetworkVisDrone.get("/")
-def data_numbers():
+def data_visDrone():
     return "test"
 
 

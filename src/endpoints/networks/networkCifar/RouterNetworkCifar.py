@@ -14,7 +14,7 @@ routerNetworkCifar = APIRouter()
 
 
 @routerNetworkCifar.get("/")
-def data_numbers():
+def data_cifar():
     return "test"
 
 
