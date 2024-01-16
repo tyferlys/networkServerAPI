@@ -1,4 +1,3 @@
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
 from sqlalchemy import (
     LargeBinary,
     Column,
