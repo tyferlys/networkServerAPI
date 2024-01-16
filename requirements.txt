@@ -12,3 +12,4 @@ greenlet
 Mako
 starlette~=0.32.0.post1
 python-dotenv~=1.0.0
+asyncpg

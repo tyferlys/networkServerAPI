@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
 
-class ImageBase64(BaseModel):
+class ImageBase64Request(BaseModel):
     image: str
