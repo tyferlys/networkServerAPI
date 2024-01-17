@@ -18,6 +18,7 @@ class Network(Base):
     title = Column(String, nullable=False, unique=True)
     description = Column(String, nullable=False)
     descriptionResult = Column(String, nullable=False)
+    image = Column(String, nullable=True)
 
     tags = relationship("Tag", secondary="TagsToNetworks", back_populates="networks")
 

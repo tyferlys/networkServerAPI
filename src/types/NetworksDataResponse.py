@@ -13,6 +13,7 @@ class NetworkBase(BaseModel):
     title: str
     description: str
     descriptionResult: str
+    image: str
     tags: List[TagBase]
 
 

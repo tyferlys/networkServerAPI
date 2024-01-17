@@ -15,3 +15,16 @@ def getAllNetworks():
         return e
     finally:
         session.close()
+
+
+def getNetwork(idNetwork: int):
+    session = SessionLocal()
+
+    try:
+        network = session.query(Network).options(joinedload(Network.tags)).where(Network.id == idNetwork).first()
+        return network
+    except Exception as e:
+        print(e)
+        return e
+    finally:
+        session.close()
