@@ -6,6 +6,7 @@ import PIL
 from fastapi import APIRouter
 
 from src.database.operations.operationsNetworks import getAllNetworks, getNetwork
+from src.networks.models.Hole.NetworkHole import predictHole
 from src.networks.models.cifar.networkCifar import predictCifar
 from src.networks.models.visDrone.networkVisDrone import predictVisDrone
 from src.types.NetworksDataResponse import NetworksDataResponse
@@ -42,6 +43,8 @@ def answer_network(idNetwork: int, imageData: ImageBase64Request) -> NetworkAnsw
         numbersData = predictCifar(fileName)
     elif idNetwork == 3:
         numbersData = predictVisDrone(fileName)
+    elif idNetwork == 4:
+        numbersData = predictHole(fileName)
 
     image = PIL.Image.open(numbersData["image"])
 
