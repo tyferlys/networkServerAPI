@@ -5,11 +5,11 @@ from typing import List
 import PIL
 from fastapi import APIRouter
 
-from src.database.operations.operationsNetworks import getAllNetworks, getNetwork
+from src.database.operations.operationsNetworks import getAllNetworks, getNetwork, getReviewForNetwork
 from src.networks.models.Hole.NetworkHole import predictHole
 from src.networks.models.cifar.networkCifar import predictCifar
 from src.networks.models.visDrone.networkVisDrone import predictVisDrone
-from src.types.NetworksDataResponse import NetworksDataResponse
+from src.types.NetworksDataResponse import NetworksDataResponse, NetworksDataResponseWithReviews
 from src.functions.base64ToImage import base64ToImage
 from src.networks.models.numbers.networkNumbers import predictNumbers
 from src.types.ImageBase64Request import ImageBase64Request
@@ -26,9 +26,10 @@ def data_networks() -> List[NetworksDataResponse]:
 
 
 @routerNetworks.get("/{idNetwork}")
-def data_network(idNetwork: int) -> NetworksDataResponse:
+def data_network(idNetwork: int) -> NetworksDataResponseWithReviews:
     networks = getNetwork(idNetwork)
-
+    reviews = getReviewForNetwork(idNetwork)
+    networks.reviews = reviews
     return networks
 
 
