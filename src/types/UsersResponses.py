@@ -24,3 +24,7 @@ class UserBase(BaseModel):
 class UsersDataResponse(UserBase):
     class Config:
         from_attributes = True
+
+
+class UsersCreateResponse(BaseModel):
+    result: str

@@ -2,7 +2,9 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import PlainTextResponse
 
+from src.endpoints.likes.RouterLikes import routerLikes
 from src.endpoints.networks.RouterNetworks import routerNetworks
+from src.endpoints.reviews.RouterReviews import routerReviews
 from src.endpoints.users.RouterUser import routerUsers
 
 app = FastAPI()
@@ -17,6 +19,8 @@ app.add_middleware(
 
 app.include_router(routerNetworks, prefix="/networks", tags=["networks"])
 app.include_router(routerUsers, prefix="/users", tags=["users"])
+app.include_router(routerLikes, prefix="/likes", tags=["likes"])
+app.include_router(routerReviews, prefix="/reviews", tags=["reviews"])
 
 @app.get("/")
 def readRoot():

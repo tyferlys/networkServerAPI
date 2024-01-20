@@ -9,11 +9,11 @@ from src.database.operations.operationsNetworks import getAllNetworks, getNetwor
 from src.networks.models.Hole.NetworkHole import predictHole
 from src.networks.models.cifar.networkCifar import predictCifar
 from src.networks.models.visDrone.networkVisDrone import predictVisDrone
-from src.types.NetworkResponses import NetworksDataResponse, NetworksDataResponseWithReviews
+from src.types.NetworkResponses import NetworksDataResponse, NetworksDataResponseWithReviews, NetworkAnswerResponse
 from src.functions.base64ToImage import base64ToImage
 from src.networks.models.numbers.networkNumbers import predictNumbers
-from src.types.ImageBase64Request import ImageBase64Request
-from src.types.NetworkAnswerResponse import NetworkAnswerResponse
+from src.types.NetworksRequest import ImageBase64Request
+
 
 routerNetworks = APIRouter()
 

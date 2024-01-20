@@ -3,6 +3,11 @@ from typing import List
 from pydantic import BaseModel
 
 
+class NetworkAnswerResponse(BaseModel):
+    answer: List[str]
+    image: str
+
+
 class UserBase(BaseModel):
     id: int
     ip_address: str
