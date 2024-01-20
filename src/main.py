@@ -1,7 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from starlette.middleware.cors import CORSMiddleware
-from starlette.responses import PlainTextResponse
+from starlette.requests import Request
+from starlette.responses import PlainTextResponse, JSONResponse
 
+from src.database.operations.operationsUsers import checkIP
 from src.endpoints.likes.RouterLikes import routerLikes
 from src.endpoints.networks.RouterNetworks import routerNetworks
 from src.endpoints.reviews.RouterReviews import routerReviews
@@ -17,10 +19,27 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.middleware('http')
+async def checkIsAuth(request: Request, call_next):
+    paths = [
+        "/likes",
+        "/reviews"
+    ]
+    isAuth = checkIP(request.client.host)
+
+    if not isAuth and any(request.url.path.startswith(path) for path in paths):
+        return JSONResponse(content={"error": "not auth"}, status_code=401)
+    else:
+        response = await call_next(request)
+        return response
+
+
 app.include_router(routerNetworks, prefix="/networks", tags=["networks"])
 app.include_router(routerUsers, prefix="/users", tags=["users"])
 app.include_router(routerLikes, prefix="/likes", tags=["likes"])
 app.include_router(routerReviews, prefix="/reviews", tags=["reviews"])
+
 
 @app.get("/")
 def readRoot():
@@ -36,4 +55,5 @@ def letsencrypt_verification():
         return content
 
 
-#TODO ПОДУМАТЬ НАД РАБОЧИМ ПРОСТРАНСТВОМ, ВСЕ ЛИ НОРМ ПО ПАПКАМ РАСПРЕДЕЛНО + ДОКУМЕНТИРУЙ И ТЕСТИРОВАНИЕ
+#TODO ДОКУМЕНТАЦИЯ СДЕЛАТЬ НОРМ MIDDLEWARE
+# В приницпе все необходимо сделано, дальше можно рефакторить и документироваться потихоньку + добавлять еще нс, надо еще пнуть рмоу

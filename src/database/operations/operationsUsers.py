@@ -86,3 +86,20 @@ def createReview(review):
         return e
     finally:
         session.close()
+
+
+def checkIP(id_address: str):
+    session = SessionLocal()
+
+    try:
+        user = session.query(User).where(User.ip_address == id_address).first()
+
+        if user is None:
+            return False
+        else:
+            return True
+    except Exception as e:
+        print(e)
+        return e
+    finally:
+        session.close()
