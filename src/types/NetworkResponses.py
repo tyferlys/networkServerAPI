@@ -3,15 +3,15 @@ from typing import List
 from pydantic import BaseModel
 
 
-class ReviewBase(BaseModel):
-    id_user: int
-    text: str
-
-
 class UserBase(BaseModel):
     id: int
     ip_address: str
     username: str
+
+
+class ReviewBase(BaseModel):
+    user: UserBase
+    text: str
 
 
 class TagBase(BaseModel):
@@ -38,3 +38,4 @@ class NetworksDataResponseWithReviews(NetworkBase):
     reviews: List[ReviewBase]
     class Config:
         from_attributes = True
+

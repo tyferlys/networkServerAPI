@@ -5,13 +5,12 @@ from sqlalchemy import (
     Integer,
     Boolean,
     UniqueConstraint,
-    PrimaryKeyConstraint
+    PrimaryKeyConstraint, ForeignKey
 )
 from sqlalchemy.orm import relationship
 
 from src.database.database import Base
 from src.database.models.NetworkLike import NetworkLike
-from src.database.models.NetworkReview import NetworkReview
 from src.database.models.TagToNetwork import TagToNetwork
 
 
@@ -25,6 +24,7 @@ class Network(Base):
 
     tags = relationship("Tag", secondary="TagsToNetworks", back_populates="networks")
     likes = relationship("User", secondary="NetworksLikes", back_populates="likes")
+    reviews = relationship("NetworkReview", back_populates="network")
 
     UniqueConstraint("title", name="uq_network_title")
     PrimaryKeyConstraint("id", name="pk_network_id")
@@ -48,9 +48,19 @@ class User(Base):
     username = Column(String, nullable=False)
 
     likes = relationship("Network", secondary="NetworksLikes", back_populates="likes")
+    reviews = relationship("NetworkReview", back_populates="user")
 
     UniqueConstraint("ip_address", name="uq_user_ip_address")
     PrimaryKeyConstraint("id", name="pk_user_id")
 
+
+class NetworkReview(Base):
+    __tablename__ = "NetworksReviews"
+    id_network = Column(Integer, ForeignKey("Networks.id"), primary_key=True)
+    id_user = Column(Integer, ForeignKey("Users.id"), primary_key=True)
+    text = Column(String, nullable=False)
+
+    user = relationship("User", back_populates="reviews")
+    network = relationship("Network", back_populates="reviews")
 
 
