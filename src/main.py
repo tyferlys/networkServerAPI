@@ -19,21 +19,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-@app.middleware('http')
-async def checkIsAuth(request: Request, call_next):
-    paths = [
-        "/likes",
-        "/reviews"
-    ]
-    isAuth = checkIP(request.client.host)
-
-    if not isAuth and any(request.url.path.startswith(path) for path in paths):
-        return JSONResponse(content={"error": "not auth"}, status_code=401)
-    else:
-        response = await call_next(request)
-        return response
-
+# Middleware для проверки существования ip адреса клиента в базе данных, если ip нет - запрос не проходит дальше.
+# Данный middleware действует только на определенных энпоинтах, они находятся в paths
 
 app.include_router(routerNetworks, prefix="/networks", tags=["networks"])
 app.include_router(routerUsers, prefix="/users", tags=["users"])
@@ -46,14 +33,6 @@ def readRoot():
     return {"message": "Hello World"}
 
 
-@app.get("/.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt", response_class=PlainTextResponse)
-def letsencrypt_verification():
-    verification_file_path = f"./src/.well-known/pki-validation/8104DF13AB2E96B890659D509A2C51CA.txt"
 
-    with open(verification_file_path, "r") as file:
-        content = file.read()
-        return content
-
-
-#TODO ДОКУМЕНТАЦИЯ СДЕЛАТЬ НОРМ MIDDLEWARE
+#TODO ДОКУМЕНТАЦИЯ
 # В приницпе все необходимо сделано, дальше можно рефакторить и документироваться потихоньку + добавлять еще нс, надо еще пнуть рмоу
